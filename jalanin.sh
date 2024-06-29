@@ -1,1 +1,1 @@
-echo "isi text file"
+"ls -la"
