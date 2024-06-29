@@ -1,10 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Deploy') {
             steps {
-                sh './jalanin.sh'
+                retry(3) {
+                    sh './jalanin.sh'
+                }
 
+                timeout(time: 3, unit: 'MINUTES') {
+                    sh './health-check.sh'
+                }
             }
         }
     }
